@@ -1,0 +1,7 @@
+Callstack = pilha de chamadas de funções 
+Funciona em Lifo: last in, first out
+
+quando chamamos uma função, ela é colocada na pilha,
+se ela chamar outra função essa outra função e colocada na pilha.
+se não houver mais nenhuma função atrelada a ultima que entrou é executada
+e as funções vão saindo da pilha em forma decrescente(lifo);

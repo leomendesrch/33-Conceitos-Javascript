@@ -1,0 +1,23 @@
+Tipos primitivos JS
+-Number
+-String
+-Boolean
+-Null
+-Undefined
+-Symbol
+
+quando atribuimos o valor de uma variavel em outra
+ex: const leo = "banana"
+const pessoa = leo
+criamos uma copia e uma memoria para cada variavel, diferente dos tipos complexos.
+
+typeof true // Boolean
+typeof Boolean(true) // Boolean
+typeof new Boolean(true) // Boolean
+
+typeof "Gabriel" // String
+
+Quando usamos os metodos de um tipo nativo da linguagem em um valor,
+ele cria uma copia do objeto do tipo, com o valor como propriedade e
+retorna os metodos ou propriedades que desejamos.
+Ex: "gabriel".length // 7
