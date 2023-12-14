@@ -1,0 +1,49 @@
+Coerção em javascript é
+quando js tenta converter um tipo de valor inesperado para um tipo esperado.
+
+Parece quando tentamos acessar propriedades e metodos de um valor ex, string 
+o javascript converte um tipo primitivo em um objeto para utilizarmos os metodos do construtor do tipo primitivo;
+quando acessamos por exemplo "banana".length
+
+Digamos que o JS tenta advinhar oque você esta tentando fazer,
+algumas vezes ele consegue e outras não.
+
+Alguns termos sobre o assunto:
+
+1. Coerção Implicita:
+- Javacript converte automaticamente os tipos para um outro, conforme necessario!
+- Exemplo: 
+var string = "500"
+var number = 10
+var result = string + number; // result = "50010" string
+
+2. Coerção Explicita:
+- você precisa declarar explicitamente o tipo de uma variável.
+- Em c# é mais evidente que o javascript pois o javascript é fracamente tipada,
+  porem, podemos usar funções para converter em js.
+- Exemplo :
+var string = "500"
+var number = 10
+var result = parseInt(string) + 10; // retorna 510 number;
+
+3. Duck Typing:
+- Se anda como Pato, fala como Pato so pode ser um Pato.
+function SomaNums(a, b){ return a + b; }
+Javacript entende que os numeros são inteiros pois são utilizados como number, na soma por exemplo;
+
+4. Tipagem Nominal:
+- Os tipos são explicitamente definidos e nomeados.
+Ex: Typescript
+let numero: number = 10
+
+5. Tipagem Estrutural:
+-  Os tipos são determinados pela sua estrutura, ou seja, pela forma dos dados. 
+ Se dois objetos têm a mesma estrutura, são considerados do mesmo tipo
+Ex:
+let pessoa1 = { nome: "João", idade: 25 };
+let pessoa2 = { nome: "Maria", idade: 30 };
+
+pessoa1 = pessoa2; // Isso é permitido porque possuem a mesma estrutura
+Obs: isso é valido em linguagens tipadas, no javascript isso seria permitido
+
+

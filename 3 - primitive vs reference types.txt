@@ -1,0 +1,19 @@
+A alocação de memoria para tipos de valor(primitivos)
+é chamada de stack(ex: pilha de livros) armazena valores simples.
+tipos de valores são imutaveis, 
+quando usamos metodos ou atribuimos o valor de uma variavel a outra 
+nós criamos uma cópia totalmente diferente na memoria.
+
+E a alocação de memoria para tipos de referencia(não primitivos)
+é chamado de heap(ex: livros espalhados) usado para guardar objetos complexos(obj, func, arr),
+tipos de referencia armazenam valores complexos,  por isso precisam de mais memoria
+são mutaveis, no heap as variaveis são ponteiros que fazem referencia ao objeto,
+por isso quando alteramos o valor de alguma das variaveis que fazem referencia altera o valor de todas as refs.
+
+forEach vs Map
+
+O metodo forEach percorre cada elemento do array,
+o forEach NÃO RETORNA NADA
+
+O metodo Map aplica uma função de callback para cada elemento do array
+e retorna um novo array, dando a possibilidade de ser encadeado.
