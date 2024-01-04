@@ -1,0 +1,83 @@
+A diferença entre #var, #let e #const:
+
+- Var: Pode ser reatribuida e atualizada.
+são de #escopo de função, ou seja, só estão disponiveis no escopo
+da função que foram criadas, ou se não tiver dentro de uma função, são de escopo #global!
+Exemplo:
+    var tester = "hey hi";
+    
+    function newFunction() {
+        var hello = "hello";
+    }
+    console.log(hello); // error: hello is not defined
+  
+- Içamento de var, é um mecanismo do javascript que pega as variaveis 
+e funções declaradas são movidas para o topo do escopo antes do tempo de execução
+Exemplo:
+  console.log (greeter);
+    var greeter = "say hello"
+  it is interpreted as this:
+    var greeter;
+    console.log(greeter); // greeter is undefined
+    greeter = "say hello"
+
+Benefícios de usar let e const:
+- Ao inves de terem escopo de função, eles tem escopo de bloco.
+Oque é um bloco? um bloco é uma abertura e fechamento de chaves.
+Let:
+Exemplo:
+ let greeting = "say Hi";
+    if (true) {
+        let greeting = "say Hello instead";
+        console.log(greeting); // "say Hello instead"
+    }
+    console.log(greeting); // "say Hi"
+
+notamos que existem duas variaveis chamadas greeting, isso é possivel pois são duas variaveis diferentes,
+em escopos diferentes.
+- Içamento de let.
+Assim como var, lets são içadas para o topo.
+Ao contrário var que é inicializado como undefined, a let não é inicializada.
+Portanto, se você tentar usar uma let variável antes da declaração, obterá um arquivo Reference Error.
+
+#Const:
+Variaveis Const não podem ser atualizadas e reatribuidas.
+com objetos é diferente:
+  const greeting = {
+      message: "say Hi",
+      times: 4
+  }
+
+embora não possamos fazer isso:
+  greeting = {
+      words: "Hello",
+      number: "five"
+  } // error:  Assignment to constant variable.
+  
+nós podemos fazer isso: 
+  greeting.message = "say Hello instead";
+
+Içamento de const:
+Assim como let, declarações consts são içadas para o topo, mas não são inicializadas.
+
+RESUMO: 
+1. Var possui escopo global ou de função, enquanto let e const possuem escopo de bloco.
+2. -variaveis Var podem ser atualizadas e declaradas novamente detro de seu escopo,
+   -variaveis Let podem ser atualizadas, mas não declaradas novamente
+   -variaveis Const não podem ser atualizadas nem declaradas novamente.
+3. Eles são todos içados até o topo do escopo porém,
+variáveis var ​​são inicializadas com undefined e let e const ​​não são inicializadas.
+4. Embora var e let possa ser declarado sem ser inicializado, const deve ser inicializado durante a declaração.
+
+Pra finalizar Escopo Léxico,
+- Quando temos funcões aninhadas, as variaveis e recursos da função acima
+podem ser usadas na função abaixo, mas as de cima não podem acessar as de baixo:
+Exemplo:
+function teste(){
+  var nome = "leo"
+  console.log(idade) // Err: variavel não declarada.
+  function teste2(){
+    console.log(nome) // retorna "leo"
+    var idade = 18;
+  }
+}

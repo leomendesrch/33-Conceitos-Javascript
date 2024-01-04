@@ -1,0 +1,14 @@
+O operador de comparação "==", passa pelos seguintes processos:
+* checa se ambos são do mesmo tipo, se não for, ele converte da seguinte maneira:
+1. null == undefined, se for, ele retorna true;
+2. number == string, se for, ele converte a string em numero.
+3. boolean == number, se for, ele converte o boolean em um numero.
+4. boolean == string, se for, ele converte a string pra boolean.
+
+O operador de comparação "===" apenas checa o tipo e depois a igualdade dos valores:
+3 === "3" // false;
+3 === 3 // true;
+
+Obs. typeoff:
+é otimo para validação de tipos;
+ex : formulario
