@@ -1,0 +1,87 @@
+1. IIFE - Immediately Invoked Function Expressions ( funções invocadas imediatamente )
+A função é executada apenas uma vez, e não é executada até o codigo rodar novamente
+Apos interpretador passar por ela, ela morre.
+Evita a poluição do escopo global, uma vez que os codigos estão dentro de uma func, em um escopo local.
+
+- pode ser declarada assim:
+  (function(){
+    console.log("Olá Mundo");
+  }())
+
+  ou
+
+  !function(){
+    console.log("Olá Mundo");
+  }()
+
+- uso na prática:
+  var variavel = 20;
+  !function(){
+    variavel = 30
+  }();
+  console.log( variavel ) // output: 30;
+
+- A real utilidade de uma IIFE, eram utilizadas para NameSpacing e criar algo parecido com que temos em modulos.
+  var dados = (function (){
+    var contador = 0;
+    return {
+      incrementar: function (){
+        contador += 1;
+        return contador;
+      }
+    }
+  }());
+
+  console.log(dados.incrementar()) // output: 1;
+  console.log(dados.incrementar()) // output: 2;
+  console.log(dados.incrementar()) // output: 3;
+  console.log(dados.contador) // output: undefined;
+  
+  isso faz com que a variavel contador esteja privada, sendo assim a variavel dados é um namespace
+  isso tambem serve para não colidir com metodos de outras bibliotecas,
+  se outra lib tiver outro metodo"incrementar()" ja resultaria em problema.
+
+2. NameSpace - pedaço de codigo que serve para organizar o codigo em pequenos grupos.
+
+3. Modulo - pedaços de códigos encapsulados que podem ser importados e expoem alguns metodos para serem utilizados.
+- Vantagens: 
+  1. Melhora legibilidade,
+  2. Encapsula tudo, podemos dar manutenção de forma individual ao código,
+  3. Mantem codigo Abstrato,
+  4. Deixa o código Reutilizavel, podendo importar em qualquer arquivo JS.
+
+- Exemplo:
+  em um diretorio temos dois arquivos,
+  1.utilitarios.js
+  2.index.js
+
+  em utilitarios temos o seguinte codigo:
+  const valor = 5;
+  const helloWorld = () => {console.log("helloWorld")};
+  const multiplica = (x) => {console.log(x * valor)};
+  export { multiplica, helloWorld }; // obs: object short hand, quando a propriedade teria o mesmo nome da constante;
+
+  em index:
+  1. podemos importar em um objeto
+  import { multiplica, helloWorld } from './utilitarios.js';
+  helloWorld(); // output: alert dizendo helloWorld;
+
+  2. podemos dar apelido para uma func importada usando "as";
+  
+  import { multiplica as olaMundo, helloWorld } from './utilitarios.js';
+  olaMundo(); // output: alert dizendo helloWorld;
+
+  3. podemos tambem importar tudo com um apelido;
+
+  import * as utilitarios from './utilitarios.js';
+  utilitarios.multiplica(5); // output: 25;
+
+  4. podemos exportar uma unica função, classe ou variavel utilizando a palavra "default"
+  em utilitarios.js:
+  const valor = 5;
+  const multiplica = (x) => {console.log(x * valor)};
+  export default multiplica;
+
+  em index.js:
+  import utilitarioMultiplica from './utilitarios.js';
+  utilitarioMultiplica(8); // output: 40;

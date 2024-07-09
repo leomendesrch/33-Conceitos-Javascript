@@ -1,0 +1,96 @@
+Javascript é uma linguagem assincrona e de apenas um núcleo(single thread).
+isso significa que consegue executar apenas uma coisa por vez
+
+O event loop tem as principais estruturas:
+- Call Stack
+- WebApi
+- Message Queue
+
+internamente o javascript usa a engine V8 que executa uma função por vez na call stack.
+call stack é composta por Heap(memoria para objetos) e Stack(funções empilhadas);
+
+o comportamente assincrono na verdade não faz parte do js, o responsavel por isso é o browser
+que implementa esse comportamento na linguagem.
+o browser executa assincronamente: eventos DOM, Requisições Http, setTimeOut;
+
+Todo codigo que completa sua execução no "WebApi" passa para a fila de espera.
+a fila de espera vai aguardar a call stack ficar vazia para só assim executar
+o "event loop" que vai pegar os items da fila e passar para a call stack.
+
+Exemplos:
+{
+    console.log(1)
+    setTimeOut(() => {
+        console.log(2)
+    }, 1000)
+    console.log(3)
+}
+
+// saida
+// 1
+// 3
+// 2
+
+1. console.log(1) passara para call stack e sera executado;
+2. setTimeOut passara para "Web Apis" e vai aguardar sua conclusao e passara para fila de espera
+3. console.log(3) passara para call stack e sera executado;
+4. apos todo codigo sincrono ser executado, o "Event Loop" sera responsavel por jogar items
+ da fila de espera(message queue) para call stack e assim executar-los;
+
+
+Requisições:
+
+const promisse = new Promisse((resolve, reject) => {
+    soma = 1 + 3
+    if(soma === 4){
+        resolve("tudo certo")
+    } else {
+        reject("deu ruim)
+    }
+})
+
+promisses tem 3 "status": "resolve" ou "fullfiled", "pending", "rejected" 
+
+usando then e catch
+promisse.then((result) => {
+    console.log("se resolver entra aqui")
+}).catch((error) => {
+    console.log("se rejeitar entra aqui")
+})
+
+usando async await
+(async function(){
+    const result = await promisse;
+    console.log(result);
+})()
+
+const result = await promisse()
+
+const endPoints = [`https://api.github.com/users/leomendesrch/repos`, `https://api.github.com/users/caionrs/repos`]
+axios.get(endPoints[0]) retorna uma promisse;
+
+se fizermos
+
+const r1 = await axios.get(endPoint1);
+const r2 = await axios.get(endPoint2);
+const r3 = await axios.get(endPoint3);
+ou
+for(endpoint of Endpoints){
+    const r3 = await axios.get(endPoint);
+}
+dessa forma uma requisição depende que a anterior encerre para ser executada.
+
+para executar requisições independentes simultaneamente usamos:
+Promisse.all() ou Foreach() com await.
+
+const r1 = axios.get(endPoint1);
+const r2 = axios.get(endPoint2);
+const r3 = axios.get(endPoint3);
+await Promise.all([r1,r2,r3])
+
+ou
+
+endpoints.Foreach(async (endPoint) => {
+    result = await axios.get(endPoint)
+    console.log(result)
+})
