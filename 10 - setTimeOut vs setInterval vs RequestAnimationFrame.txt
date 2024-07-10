@@ -1,0 +1,63 @@
+1- O setTimeOut funciona da seguinte forma:
+
+setTimeOut(arg1, arg2)
+
+arg1 => função anonima
+arg2 => tempo(ms) que aguardara para executar arg1
+
+ex:
+setTimeOut(() => {
+    console.log("Leonardo")
+}, 2000)
+
+após 2 segundos da execução desse codigo, "Leonardo" seja jogado no console.
+
+setTimeout retorna um ID que pode interromper a execução do timer
+utilizando cleartimeout(id)
+
+-----------------------------------------------------------------------------------------
+
+2- SetInterval funciona da seguinte forma
+
+setInterval(arg1, arg2)
+
+arg1 => função anonima
+arg2 => a cada arg2(tempo(ms)), arg1 será executada;
+
+setInterval retorna um id que pode ser usado para quebrar a repetição.
+
+const IntervalID = setInterval(() => {
+    console.log("paxta)
+}, 2000)
+
+clearInterval(IntervalID);
+
+------------------------------------------------------------------------------------------
+
+3- requestAnimationFrame() é utiliazado para performar animações no browser,
+poderiamos fazer com setinterval ou settimeout porem é desvatajoso em comparação com requestanimationframe;
+
+requestAnimationFrame(arg1) recebe uma função de callback como parametro;
+arg1 é uma função que recebera um argumento do requestanimationframe
+
+Exemplo de Uso:
+
+function animaElemento(element) {
+  let start = null;
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    let progress = timestamp - start;
+    element.style.transform = 'translateX(' + Math.min(progress / 10, 200) + 'px)';
+
+    if (progress < 2000) { // Anima por 2 segundos
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+const elemento = document.getElementById('meuElemento');
+animaElemento(elemento);
+
