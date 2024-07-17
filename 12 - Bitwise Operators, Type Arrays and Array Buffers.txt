@@ -1,0 +1,21 @@
+Bits no javascript
+Tudo para um computador é armazenado nos digitos 0 e 1,
+portanto ele codifica
+
+para saber o codigo binario de um numero utilizamos
+console.log(Number(113).toString(2)) // saida "1110001"
+
+não tem como usar binarios diretamente em javascript
+para converter binarios em int
+console.log(parseInt('1110001, 2)) // saida 113
+obs: segundo parametro no parseInt é a base numerica(binaria)
+
+Operadores bitWise
+eles trabalham em cada bit do caracter da comparação
+" | (OR)"
+" & (AND)"
+console.log(1 | 2); ou cosole.log(console.log(1 & 2))
+vai comparar
+// 00000001 = 1 
+// 00000010 = 2
+// 00000011 = R ou 00000000 = R

@@ -1,0 +1,16 @@
+DOM (Document Object Model)
+A DOM é que uma representação com nós e folhas do html da página carregada pelo browser.
+então quando entramos em uma página o browser pega o html e cria uma arvore convertendo tags em
+objetos e aninha os elementos da forma em que escrevemos.
+
+A DOM disponibiliza metodos para manipular-lá.
+por exemplo quando "selecionamos" um elemento por id e altero seu estilo, texto ou removo,
+não estou alterando o HTML diretamente mas sim o objeto criado a partir dele que está em  uma certa posição na árvore.
+exemplo: 
+
+<html>
+    <div id="bloco">
+    </div>
+</html>
+const bloco = document.getElementById('bloco).append("textoNoBloco")
+ 
